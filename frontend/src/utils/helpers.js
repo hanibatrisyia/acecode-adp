@@ -16,8 +16,8 @@ export const getRoleColor = (role) => {
 export const getStatusColor = (status) => {
   const colors = {
     Aktif: { bg: "#DCFCE7", text: "#166534" },
+    "Tidak Aktif": { bg: "#FEE2E2", text: "#991B1B" },
     Dikunci: { bg: "#FEE2E2", text: "#991B1B" },
-    "Tidak Aktif": { bg: "#F3F4F6", text: "#6B7280" },
   };
   return colors[status] || colors["Tidak Aktif"];
 };

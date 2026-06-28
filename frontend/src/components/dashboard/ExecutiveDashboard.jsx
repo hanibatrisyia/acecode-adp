@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { C } from '../../styles/theme';
+import { rolePermissions } from '../../data/mockData';
+import { getRoleColor } from '../../utils/helpers';
 
 export const ExecutiveDashboard = ({ user }) => {
-  console.log('ExecutiveDashboard rendering');
-  
+  const [showPermissions, setShowPermissions] = useState(false);
+  const userPermissions = rolePermissions[user?.role]?.permissions || [];
+
   return (
     <div style={{ 
       padding: "32px", 
@@ -43,6 +47,68 @@ export const ExecutiveDashboard = ({ user }) => {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* UC004: View own role & permissions */}
+      <div style={{ marginBottom: 24 }}>
+        <button
+          onClick={() => setShowPermissions(!showPermissions)}
+          style={{
+            padding: "10px 20px",
+            borderRadius: 10,
+            border: "1px solid #E5E7EB",
+            background: C.white,
+            cursor: "pointer",
+            fontSize: 14,
+            fontWeight: 600,
+            color: "#374151",
+            display: "flex",
+            alignItems: "center",
+            gap: 8
+          }}
+        >
+          {showPermissions ? "🔽" : "▶️"} Lihat Kebenaran Saya
+        </button>
+
+        {showPermissions && (
+          <div style={{
+            marginTop: 12,
+            background: C.white,
+            borderRadius: 12,
+            border: "1px solid #E5E7EB",
+            padding: "20px"
+          }}>
+            <div style={{ marginBottom: 12 }}>
+              <span style={{ fontSize: 13, color: "#6B7280" }}>Peranan: </span>
+              <span style={{
+                padding: "2px 12px",
+                borderRadius: 12,
+                fontSize: 13,
+                fontWeight: 600,
+                background: getRoleColor(user?.role).bg,
+                color: getRoleColor(user?.role).text
+              }}>
+                Kakitangan Eksekutif
+              </span>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6 }}>
+              {userPermissions.map((perm, i) => (
+                <div key={i} style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 6,
+                  fontSize: 13,
+                  color: "#374151",
+                  padding: "4px 8px",
+                  background: "#F9FAFB",
+                  borderRadius: 6
+                }}>
+                  <span style={{ color: "#22C55E" }}>✓</span> {perm}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       <div style={{

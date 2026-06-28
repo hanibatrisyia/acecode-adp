@@ -106,3 +106,78 @@ export const matchFAQ = (input) => {
   }
   return null;
 };
+
+export const roleLabels = {
+  admin: "Pentadbir Sistem",
+  executive: "Kakitangan Eksekutif",
+  experienced: "Kakitangan Berpengalaman",
+  normal: "Kakitangan Biasa",
+};
+
+export const rolePermissions = {
+  admin: {
+    label: "Pentadbir Sistem",
+    permissions: [
+      "Urus Pengguna",
+      "Lihat Log Audit",
+      "Urus Peranan",
+      "Urus Kebenaran",
+      "Akses Semua",
+      "Muat Naik SOP",
+      "Kemaskini Aliran Kerja",
+      "Luluskan Pengetahuan",
+      "Batalkan Akses"
+    ]
+  },
+  executive: {
+    label: "Kakitangan Eksekutif",
+    permissions: [
+      "Muat Naik SOP Rasmi",
+      "Kemaskini Aliran Kerja",
+      "Rakam Pengetahuan Tersirat",
+      "Luluskan Pengetahuan",
+      "Lihat Log Audit",
+      "Urus Pengguna",
+      "Akses Semua Jabatan"
+    ]
+  },
+  experienced: {
+    label: "Kakitangan Berpengalaman",
+    permissions: [
+      "Rakam Pengetahuan Tersirat",
+      "Lihat SOP",
+      "Lihat Sejarah Sembang",
+      "Lihat Sejarah Aktiviti"
+    ]
+  },
+  normal: {
+    label: "Kakitangan Biasa",
+    permissions: [
+      "Lihat SOP",
+      "Guna Chatbot AI",
+      "Lihat Sejarah Sembang"
+    ]
+  }
+};
+
+export const auditLogs = [
+  { id: 1, pengguna: "Ahmad bin Abdullah", tindakan: "Tetapkan peranan kepada Siti binti Abu", ip: "192.168.1.10", peranti: "Chrome / Windows", masa: "27/06/2025 09:22" },
+  { id: 2, pengguna: "Ali bin Ismail", tindakan: "Cubaan log masuk gagal (3/5)", ip: "192.168.1.44", peranti: "Safari / iPhone", masa: "27/06/2025 08:51" },
+  { id: 3, pengguna: "Siti binti Abu", tindakan: "Tetapkan semula kata laluan", ip: "192.168.1.21", peranti: "Chrome / MacOS", masa: "26/06/2025 15:10" },
+  { id: 4, pengguna: "Nurul Ain binti Hamzah", tindakan: "Akaun dikunci selepas 5 cubaan gagal", ip: "192.168.1.55", peranti: "Edge / Windows", masa: "25/06/2025 11:03" },
+  { id: 5, pengguna: "Ahmad bin Abdullah", tindakan: "Akses dibatalkan untuk Ali bin Ismail", ip: "192.168.1.10", peranti: "Chrome / Windows", masa: "24/06/2025 17:00" },
+];
+
+export const sejarahChat = [
+  { id: 1, tajuk: "SOP Permohonan Lesen Perniagaan", tarikh: "27/06/2025", pratonton: "Bagaimana cara untuk mohon lesen perniagaan baharu?" },
+  { id: 2, tajuk: "Prosedur Rayuan Cukai Taksiran", tarikh: "26/06/2025", pratonton: "Apakah dokumen yang diperlukan untuk rayuan?" },
+  { id: 3, tajuk: "Panduan Pendaftaran Harta", tarikh: "24/06/2025", pratonton: "Langkah-langkah pendaftaran harta baru..." },
+];
+
+export const sejarahAktiviti = [
+  { tindakan: "Lihat dokumen SOP", masa: "27/06/2025 09:33", jenis: "lihat" },
+  { tindakan: "Kemaskini foto profil", masa: "27/06/2025 08:02", jenis: "kemaskini" },
+  { tindakan: "Hantar pengetahuan tersirat", masa: "26/06/2025 15:45", jenis: "muat naik" },
+  { tindakan: "Muat turun laporan audit PDF", masa: "25/06/2025 11:20", jenis: "muat turun" },
+  { tindakan: "Log masuk sistem", masa: "25/06/2025 09:00", jenis: "log masuk" },
+];

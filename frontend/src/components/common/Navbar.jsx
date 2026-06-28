@@ -1,5 +1,6 @@
 import React from 'react';
 import { C } from '../../styles/theme';
+import { roleLabels } from '../../data/mockData';
 
 export const Navbar = ({ user, onLogin, onLogout }) => {
   console.log('Navbar rendering, user:', user);
@@ -17,16 +18,6 @@ export const Navbar = ({ user, onLogin, onLogout }) => {
       normal: { bg: '#F9FAFB', text: '#374151' },
     };
     return colors[role] || colors.normal;
-  };
-
-  const getRoleLabel = (role) => {
-    const labels = {
-      admin: 'Pentadbir',
-      executive: 'Eksekutif',
-      experienced: 'Berpengalaman',
-      normal: 'Biasa',
-    };
-    return labels[role] || role;
   };
 
   return (
@@ -104,7 +95,7 @@ export const Navbar = ({ user, onLogin, onLogout }) => {
                 color: getRoleColor(user.role).text,
                 fontWeight: 600
               }}>
-                {getRoleLabel(user.role)}
+                {roleLabels[user.role] || user.role}
               </div>
             </div>
 
