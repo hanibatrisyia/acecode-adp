@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { C } from '../../styles/theme';
 import { mockUsers, roleLabels, rolePermissions, auditLogs } from '../../data/mockData';
 import { getInitials, getRoleColor, getStatusColor } from '../../utils/helpers';
-import ChatbotSubsystem from '../chatbot/ChatbotSubsystem';
+import { ChatbotSubsystem } from '/src/components/chatbot/ChatbotSubsystem';
 
 export const AdminDashboard = ({ user }) => {
   const [activeTab, setActiveTab] = useState('users');
@@ -14,10 +14,6 @@ export const AdminDashboard = ({ user }) => {
   const [permissions, setPermissions] = useState(rolePermissions);
   const [searchTerm, setSearchTerm] = useState('');
   const [toast, setToast] = useState(null);
-
-  // Small floating action widget states
-  const [isChatExpanded, setIsChatExpanded] = useState(false);
-  const [isRecExpanded, setIsRecExpanded] = useState(false);
 
   const showToast = (message, type = 'success') => {
     setToast({ message, type });
@@ -111,7 +107,7 @@ export const AdminDashboard = ({ user }) => {
           <p style={{ fontSize: 13, color: "#6B7280", marginBottom: 20 }}>Konfigurasi kebenaran global untuk setiap peranan. Perubahan berkuat kuasa untuk semua pengguna dalam peranan tersebut.</p>
           {Object.entries(permissions).map(([roleKey, roleData]) => (
             <div key={roleKey} style={{ marginBottom: 16, padding: "16px", borderRadius: 12, border: "1px solid #E5E7EB", background: "#F9FAFB" }}>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
+              <div style={{ display: "flex", alignItems: "center", justifycontent: "space-between", marginBottom: 12 }}>
                 <div>
                   <div style={{ fontSize: 15, fontWeight: 600, color: "#111827" }}>{roleData.label}</div>
                   <div style={{ fontSize: 12, color: "#6B7280" }}>{roleData.permissions.length} kebenaran</div>
@@ -266,137 +262,12 @@ export const AdminDashboard = ({ user }) => {
         </div>
       )}
 
-      {/* --- SMALL FLOATING MINI SYMBOL ACTION BUTTONS (UP/DOWN OVERLAYS) --- */}
-      <div style={{
-        position: "fixed",
-        bottom: "24px",
-        right: "24px",
-        display: "flex",
-        flexDirection: "column-reverse",
-        alignItems: "flex-end",
-        gap: "16px",
-        pointerEvents: "none",
-        zIndex: 9999
-      }}>
-        
-        {/* WIDGET CONTAINER 1: CHATBOT PANEL TERMINAL */}
-        <div style={{ pointerEvents: "auto", display: "flex", flexDirection: "column-reverse", alignItems: "flex-end" }}>
-          {/* Small Symbol Button */}
-          <button 
-            onClick={() => { setIsChatExpanded(!isChatExpanded); if(!isChatExpanded) setIsRecExpanded(false); }}
-            style={{
-              width: "56px",
-              height: "56px",
-              borderRadius: "50%",
-              background: "#0f4c81",
-              color: "#ffffff",
-              border: "none",
-              fontSize: "24px",
-              cursor: "pointer",
-              boxShadow: "0 4px 16px rgba(15,76,129,0.3)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              outline: "none",
-              transition: "transform 0.2s"
-            }}
-            onMouseEnter={(e) => e.target.style.transform = "scale(1.06)"}
-            onMouseLeave={(e) => e.target.style.transform = "scale(1)"}
-          >
-            {isChatExpanded ? "✖" : "🤖"}
-          </button>
-          
-          {/* Expanded Container painted upwards */}
-          {isChatExpanded && (
-            <div style={{
-              width: "440px",
-              height: "540px",
-              backgroundColor: "#ffffff",
-              borderRadius: "16px",
-              border: "1.5px solid #0f4c81",
-              boxShadow: "0 10px 40px rgba(0,0,0,0.15)",
-              marginBottom: "12px",
-              overflow: "hidden",
-              display: "flex",
-              flexDirection: "column",
-              animation: "slideUp 0.25s ease-out"
-            }}>
-              <div style={{ padding: "14px 16px", background: "#0f4c81", color: "white", fontSize: "14px", fontWeight: "700" }}>
-                Pembantu AI Core Workspace
-              </div>
-              <div style={{ flex: 1, overflowY: "auto", background: "#f8fafc" }}>
-                <div style={{ transform: "scale(0.96)", transformOrigin: "top center", marginTop: "4px" }}>
-                  <ChatbotSubsystem />
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* WIDGET CONTAINER 2: RECOMMENDATION ENGINE SUB-BOX */}
-        <div style={{ pointerEvents: "auto", display: "flex", flexDirection: "column-reverse", alignItems: "flex-end" }}>
-          {/* Small Symbol Button */}
-          <button 
-            onClick={() => { setIsRecExpanded(!isRecExpanded); if(!isRecExpanded) setIsChatExpanded(false); }}
-            style={{
-              width: "48px",
-              height: "48px",
-              borderRadius: "50%",
-              background: "#b45309",
-              color: "#ffffff",
-              border: "none",
-              fontSize: "20px",
-              cursor: "pointer",
-              boxShadow: "0 4px 14px rgba(180,83,9,0.25)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              outline: "none",
-              marginRight: "4px",
-              transition: "transform 0.2s"
-            }}
-            onMouseEnter={(e) => e.target.style.transform = "scale(1.06)"}
-            onMouseLeave={(e) => e.target.style.transform = "scale(1)"}
-          >
-            {isRecExpanded ? "✖" : "💡"}
-          </button>
-          
-          {/* Expanded Container painted upwards */}
-          {isRecExpanded && (
-            <div style={{
-              width: "360px",
-              height: "360px",
-              backgroundColor: "#ffffff",
-              borderRadius: "14px",
-              border: "1.5px solid #b45309",
-              boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
-              marginBottom: "12px",
-              overflow: "hidden",
-              display: "flex",
-              flexDirection: "column",
-              animation: "slideUp 0.25s ease-out"
-            }}>
-              <div style={{ padding: "12px 16px", background: "#b45309", color: "white", fontSize: "13px", fontWeight: "700" }}>
-                Cadangan Tugas & Rujukan Pintar
-              </div>
-              <div style={{ flex: 1, padding: "16px", overflowY: "auto", display: "flex", flexDirection: "column", gap: "12px" }}>
-                <div style={{ padding: "12px", backgroundColor: "#f0f7ff", border: "1px solid #bfdbfe", borderRadius: "10px", fontSize: "12px" }}>
-                  <p style={{ margin: "0 0 4px 0", fontWeight: "700", color: "#0f4c81" }}>📄 SOP_Penilaian_Cukai_Harta_MBPG_v2.pdf</p>
-                  <p style={{ margin: "0 0 6px 0", color: "#64748b" }}>Rujukan Context: Muka Surat 12</p>
-                  <span style={{ backgroundColor: "#0f4c81", color: "white", padding: "2px 6px", borderRadius: "4px", fontSize: "10px" }}>Bahagian Kewangan</span>
-                </div>
-                <div style={{ padding: "12px", backgroundColor: "#fffbeb", border: "1px solid #fef3c7", borderRadius: "10px", fontSize: "12px" }}>
-                  <span style={{ fontWeight: "700", color: "#b45309", display: "block", marginBottom: "4px" }}>💡 TUGASAN AKTIF HARI INI:</span>
-                  <p style={{ margin: 0, color: "#78350f", lineHeight: "1.4" }}>Modul Latihan 3: Pengesahan Data dan Hak Milik Tanah Berkanun</p>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-
+      {/* --- INTEGRATED SMARTWORK AI SUB-SYSTEM WIDGET --- */}
+      <div style={{ pointerEvents: "auto" }}>
+        {/* Sends down current active user profile roles cleanly to control recommendations */}
+        <ChatbotSubsystem role={user?.role || 'normal'} />
       </div>
 
-      {/* Keyframe translation logic injected natively for the slider behavior */}
       <style>{`
         @keyframes slideUp {
           from { opacity: 0; transform: translateY(20px); }

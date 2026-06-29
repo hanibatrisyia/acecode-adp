@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { C } from '../../styles/theme';
 import { rolePermissions } from '../../data/mockData';
 import { getRoleColor } from '../../utils/helpers';
-import ChatbotSubsystem from '../chatbot/ChatbotSubsystem';
-
+import { ChatbotSubsystem } from '/src/components/chatbot/ChatbotSubsystem';
 export const ExecutiveDashboard = ({ user }) => {
   const [showPermissions, setShowPermissions] = useState(false);
   const userPermissions = rolePermissions[user?.role]?.permissions || [];
@@ -282,7 +281,7 @@ export const ExecutiveDashboard = ({ user }) => {
 
       {/* 🌟 EMBEDDED SUBSYSTEM PANEL */}
       <div style={{ marginTop: '32px' }}>
-        <ChatbotSubsystem />
+        <ChatbotSubsystem role = "executive" />
       </div>
 
     </div>

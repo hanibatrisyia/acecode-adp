@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import ChatbotSubsystem from '../chatbot/ChatbotSubsystem';
-
+import { ChatbotSubsystem } from '/src/components/chatbot/ChatbotSubsystem';
 export const ExperiencedDashboard = ({ user }) => {
    const [activeTab, setActiveTab] = useState('tacit'); // Default to 'tacit' since 'upload' (UC011) is locked for this role!
   const [uploadType, setUploadType] = useState('SOP'); 
@@ -162,7 +161,7 @@ export const ExperiencedDashboard = ({ user }) => {
         
       {/* 🌟 EMBEDDED SUBSYSTEM PANEL */}
       <div style={{ marginTop: '32px' }}>
-        <ChatbotSubsystem />
+        <ChatbotSubsystem role="experienced" />
       </div>
 
     </div>

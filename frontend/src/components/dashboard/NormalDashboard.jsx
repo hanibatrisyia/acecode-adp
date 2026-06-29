@@ -1,6 +1,5 @@
 import React from 'react';
-import ChatbotSubsystem from '../chatbot/ChatbotSubsystem';
-
+import { ChatbotSubsystem } from '/src/components/chatbot/ChatbotSubsystem';
 export const NormalDashboard = ({ user }) => {
   console.log('NormalDashboard rendering');
   
@@ -14,7 +13,7 @@ export const NormalDashboard = ({ user }) => {
     }}>
       <div style={{ marginBottom: 32 }}>
         <h1 style={{ fontSize: 28, fontWeight: 800, color: "#111827" }}>
-          Selamat datang, {user?.name || 'Normal'}! 📋
+          Selamat datang, {user?.name }! 📋
         </h1>
         <p style={{ fontSize: 14, color: "#6B7280", marginTop: 4 }}>
           Kakitangan Biasa · {user?.jabatan || 'Unit IT'}
