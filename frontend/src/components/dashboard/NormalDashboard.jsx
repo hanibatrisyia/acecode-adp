@@ -1,4 +1,5 @@
 import React from 'react';
+import ChatbotSubsystem from '../chatbot/ChatbotSubsystem';
 
 export const NormalDashboard = ({ user }) => {
   console.log('NormalDashboard rendering');
@@ -44,6 +45,9 @@ export const NormalDashboard = ({ user }) => {
           </div>
         ))}
       </div>
+      <div className="mt-8">
+         <ChatbotSubsystem />
+         </div>
     </div>
   );
 };

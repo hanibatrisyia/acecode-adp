@@ -1,4 +1,5 @@
 import React from 'react';
+import ChatbotSubsystem from '../chatbot/ChatbotSubsystem';
 
 export const ExperiencedDashboard = ({ user }) => {
   console.log('ExperiencedDashboard rendering');
@@ -9,8 +10,10 @@ export const ExperiencedDashboard = ({ user }) => {
       maxWidth: 1200, 
       margin: "0 auto",
       background: '#F8FAFF',
-      minHeight: 'calc(100vh - 68px)'
+      minHeight: 'calc(100vh - 68px)',
+      fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif'
     }}>
+      {/* Welcome Banner */}
       <div style={{ marginBottom: 32 }}>
         <h1 style={{ fontSize: 28, fontWeight: 800, color: "#111827" }}>
           Selamat datang, {user?.name || 'Experienced'}! 🎯
@@ -20,6 +23,7 @@ export const ExperiencedDashboard = ({ user }) => {
         </p>
       </div>
 
+      {/* Stats Cards */}
       <div style={{ 
         display: "grid", 
         gridTemplateColumns: "repeat(3,1fr)", 
@@ -45,13 +49,15 @@ export const ExperiencedDashboard = ({ user }) => {
         ))}
       </div>
 
+      {/* Tacit Knowledge Capture Form Card */}
       <div style={{
         background: "white",
         borderRadius: 12,
         border: "1px solid #E5E7EB",
-        padding: "20px"
+        padding: "20px",
+        marginBottom: 32 // Added margin spacing here
       }}>
-        <h3 style={{ marginBottom: 16 }}>Kongsi Pengetahuan Tersirat</h3>
+        <h3 style={{ marginBottom: 16, fontWeight: 700, color: '#111827' }}>Kongsi Pengetahuan Tersirat</h3>
         <div style={{ display: "flex", gap: 12 }}>
           <input
             type="text"
@@ -78,6 +84,12 @@ export const ExperiencedDashboard = ({ user }) => {
           </button>
         </div>
       </div>
+
+      {/* 🌟 EMBEDDED SUBSYSTEM PANEL */}
+      <div style={{ marginTop: '32px' }}>
+        <ChatbotSubsystem />
+      </div>
+
     </div>
   );
 };

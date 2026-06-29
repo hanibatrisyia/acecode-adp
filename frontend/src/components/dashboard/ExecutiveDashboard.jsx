@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { C } from '../../styles/theme';
 import { rolePermissions } from '../../data/mockData';
 import { getRoleColor } from '../../utils/helpers';
+import ChatbotSubsystem from '../chatbot/ChatbotSubsystem';
 
 export const ExecutiveDashboard = ({ user }) => {
   const [showPermissions, setShowPermissions] = useState(false);
@@ -13,8 +14,10 @@ export const ExecutiveDashboard = ({ user }) => {
       maxWidth: 1200, 
       margin: "0 auto",
       background: '#F8FAFF',
-      minHeight: 'calc(100vh - 68px)'
+      minHeight: 'calc(100vh - 68px)',
+      fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif'
     }}>
+      {/* Welcome Header */}
       <div style={{ marginBottom: 32 }}>
         <h1 style={{ fontSize: 28, fontWeight: 800, color: "#111827" }}>
           Selamat datang, {user?.name || 'Executive'}! 👔
@@ -24,6 +27,7 @@ export const ExecutiveDashboard = ({ user }) => {
         </p>
       </div>
 
+      {/* Stats Section */}
       <div style={{ 
         display: "grid", 
         gridTemplateColumns: "repeat(3,1fr)", 
@@ -111,13 +115,15 @@ export const ExecutiveDashboard = ({ user }) => {
         )}
       </div>
 
+      {/* Immediate Actions Card */}
       <div style={{
         background: "white",
         borderRadius: 12,
         border: "1px solid #E5E7EB",
-        padding: "20px"
+        padding: "20px",
+        marginBottom: 32 // Added margin spacing here
       }}>
-        <h3 style={{ marginBottom: 16 }}>Tindakan Segera</h3>
+        <h3 style={{ marginBottom: 16, fontWeight: 700, color: "#111827" }}>Tindakan Segera</h3>
         {[
           "SOP Permohonan Lesen Perniagaan v2.0 - Menunggu semakan",
           "Pengetahuan Tersirat - Proses Rayuan Cukai",
@@ -131,6 +137,12 @@ export const ExecutiveDashboard = ({ user }) => {
           </div>
         ))}
       </div>
+
+      {/* 🌟 EMBEDDED SUBSYSTEM PANEL */}
+      <div style={{ marginTop: '32px' }}>
+        <ChatbotSubsystem />
+      </div>
+
     </div>
   );
 };
